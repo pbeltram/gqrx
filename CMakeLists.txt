@@ -66,9 +66,6 @@ if(MSVC)
     #use std::min()/std::max()
     add_definitions(-DNOMINMAX)
 
-    #needed to dynamically link boost
-    add_definitions(-DBOOST_ALL_DYN_LINK)
-
     #export gr-rds symbols
     add_definitions(-Dgnuradio_RDS_EXPORTS)
 
@@ -143,10 +140,6 @@ math(EXPR GNURADIO_BCD_VERSION
     "
 )
 add_definitions(-DGNURADIO_VERSION=${GNURADIO_BCD_VERSION})
-
-if(Gnuradio_VERSION VERSION_LESS "3.8")
-    find_package(Boost COMPONENTS system REQUIRED)
-endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux|FreeBSD")
     if(NOT LINUX_AUDIO_BACKEND)
@@ -244,13 +237,11 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Finish configuring compiler / linker settings & flags
 include_directories(
     ${CMAKE_SOURCE_DIR}/include
-    ${Boost_INCLUDE_DIRS}
     ${GNURADIO_RUNTIME_INCLUDE_DIRS}
     ${GNURADIO_OSMOSDR_INCLUDE_DIRS}
 )
 
 link_directories(
-    ${Boost_LIBRARY_DIRS}
     ${GNURADIO_RUNTIME_LIBRARY_DIRS}
     ${ICU4C_LIBRARY_DIRS}
 )

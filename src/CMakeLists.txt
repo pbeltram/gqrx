@@ -64,7 +64,6 @@ target_link_libraries(${PROJECT_NAME}
     Qt5::Network
     Qt5::Widgets
     Qt5::Svg
-    ${Boost_LIBRARIES}
     ${GNURADIO_ALL_LIBRARIES}
     ${GNURADIO_OSMOSDR_LIBRARIES}
     ${PULSEAUDIO_LIBRARY}
